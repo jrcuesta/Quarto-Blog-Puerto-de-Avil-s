@@ -1,0 +1,36 @@
+---
+title: "Preparing the data"
+description: "We start this project with some data downloaded from the Puerto de Avilés web page. The idea is understand the marine traffic in this port and make some statistics"
+author: "José Ramón Cuesta"
+date: "5/22/2021"
+draft: true
+---
+
+First we load the libraries we need to read the data and make some plots.
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(lubridate)
+
+```
+
+We prepare the data to be read in R (from an Excel file in Github). 
+
+```{r}
+url <- "https://github.com/jrcuesta/Puerto-de-Aviles/raw/refs/heads/main/puerto_aviles_16.xls"
+
+# Create a tempora
+temp_file <- tempfile(fileext = ".xls")
+
+# Download the file
+download.file(url, temp_file, mode = "wb")  # "wb" is important for binary files
+
+# read the file in R
+df <- read_excel(temp_file)
+
+# See the header
+head(df)
+```
+
+
